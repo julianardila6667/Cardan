@@ -27,8 +27,8 @@ export const img = {
   // Sectores
   carService: u('photo-1492144534655-ae79c964c9d7', 800, 600),
   carServiceAlt: 'Vehículo en servicio de mantenimiento',
-  truck: u('photo-1592194996308-7b43878e84a6', 800, 600),
-  truckAlt: 'Camión de carga pesada',
+  truck: u('photo-1592805144716-feeccccef5ac', 800, 1000),
+  truckAlt: 'Camión de carga pesada en carretera',
   industry: u('photo-1486262715619-67b85e0b08d3', 800, 600),
   industryAlt: 'Maquinaria industrial en operación',
   agricultural: px(5358849, 800, 1000),

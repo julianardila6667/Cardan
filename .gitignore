@@ -32,3 +32,4 @@ Thumbs.db
 
 # project working files (Figma references, not part of the site)
 Examples/
+.verify/

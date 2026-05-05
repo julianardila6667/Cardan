@@ -6,21 +6,28 @@ import Faq from '../components/Faq.astro';
 import Icon from '../components/Icon.astro';
 
 const services = [
-  { title: 'Venta de cardanes', desc: 'Cardanes nuevos y reconstruidos para todo tipo de vehículo y maquinaria.', icon: 'cog' as const },
-  { title: 'Mantenimiento preventivo', desc: 'Diagnóstico, lubricación, balanceo y revisión técnica.', icon: 'wrench' as const },
-  { title: 'Adaptación a la medida', desc: 'Fabricamos cardanes según las especificaciones exactas de tu equipo.', icon: 'gear' as const },
-  { title: 'Cambio de crucetas', desc: 'Reemplazo de crucetas con repuestos certificados y garantía.', icon: 'shield' as const },
-  { title: 'Balanceo dinámico', desc: 'Balanceo computarizado para eliminar vibraciones a alta velocidad.', icon: 'gear' as const },
-  { title: 'Reparación de yugos', desc: 'Restauración o reemplazo de yugos desgastados o dañados.', icon: 'wrench' as const },
-  { title: 'Tornillería y bridas', desc: 'Repuestos originales y de alta resistencia para cardanes industriales.', icon: 'cog' as const },
-  { title: 'Servicio de emergencia', desc: 'Atención prioritaria para flotas y vehículos de carga pesada.', icon: 'headset' as const },
-  { title: 'Diagnóstico técnico', desc: 'Inspección profesional sin costo para identificar fallas.', icon: 'shield' as const },
-  { title: 'Cardanes industriales', desc: 'Soluciones para maquinaria de construcción, minería y manufactura.', icon: 'industry' as const },
-  { title: 'Cardanes agrícolas', desc: 'Especializados en tractores, cosechadoras y equipos del campo.', icon: 'tractor' as const },
-  { title: 'Asesoría técnica', desc: 'Más de 40 años orientando a clientes con la mejor solución.', icon: 'headset' as const },
+  { title: 'Venta de cardanes',         desc: 'Cardanes nuevos y reconstruidos para todo tipo de vehículo y maquinaria.', icon: 'cog'      as const, tags: ['vehiculos','carga','industrial','agricola'] },
+  { title: 'Mantenimiento preventivo',  desc: 'Diagnóstico, lubricación, balanceo y revisión técnica.',                  icon: 'wrench'   as const, tags: ['mantenimiento','vehiculos','carga'] },
+  { title: 'Adaptación a la medida',    desc: 'Fabricamos cardanes según las especificaciones exactas de tu equipo.',    icon: 'gear'     as const, tags: ['vehiculos','carga','industrial','agricola'] },
+  { title: 'Cambio de crucetas',        desc: 'Reemplazo de crucetas con repuestos certificados y garantía.',           icon: 'shield'   as const, tags: ['mantenimiento','vehiculos','carga'] },
+  { title: 'Balanceo dinámico',         desc: 'Balanceo computarizado para eliminar vibraciones a alta velocidad.',     icon: 'gear'     as const, tags: ['mantenimiento','carga','industrial'] },
+  { title: 'Reparación de yugos',       desc: 'Restauración o reemplazo de yugos desgastados o dañados.',                icon: 'wrench'   as const, tags: ['mantenimiento','vehiculos','carga'] },
+  { title: 'Tornillería y bridas',      desc: 'Repuestos originales y de alta resistencia para cardanes industriales.', icon: 'cog'      as const, tags: ['industrial','carga'] },
+  { title: 'Servicio de emergencia',    desc: 'Atención prioritaria para flotas y vehículos de carga pesada.',           icon: 'headset'  as const, tags: ['carga','vehiculos'] },
+  { title: 'Diagnóstico técnico',       desc: 'Inspección profesional sin costo para identificar fallas.',               icon: 'shield'   as const, tags: ['mantenimiento','vehiculos','carga','industrial','agricola'] },
+  { title: 'Cardanes industriales',     desc: 'Soluciones para maquinaria de construcción, minería y manufactura.',     icon: 'industry' as const, tags: ['industrial'] },
+  { title: 'Cardanes agrícolas',        desc: 'Especializados en tractores, cosechadoras y equipos del campo.',          icon: 'tractor'  as const, tags: ['agricola'] },
+  { title: 'Asesoría técnica',          desc: 'Más de 40 años orientando a clientes con la mejor solución.',             icon: 'headset'  as const, tags: ['vehiculos','carga','industrial','agricola','mantenimiento'] },
 ];
 
-const filters = ['Todos', 'Vehículos', 'Carga pesada', 'Industrial', 'Agrícola', 'Mantenimiento'];
+const filters = [
+  { label: 'Todos',         id: 'todos' },
+  { label: 'Vehículos',     id: 'vehiculos' },
+  { label: 'Carga pesada',  id: 'carga' },
+  { label: 'Industrial',    id: 'industrial' },
+  { label: 'Agrícola',      id: 'agricola' },
+  { label: 'Mantenimiento', id: 'mantenimiento' },
+];
 
 const faqItems = [
   {
@@ -87,15 +94,26 @@ const packages = [
   <!-- Filters + grid -->
   <section class="section">
     <div class="container-x">
-      <div class="mb-10 flex flex-wrap items-center justify-center gap-3">
+      <div class="mb-10 flex flex-wrap items-center justify-center gap-3" role="tablist" aria-label="Filtrar servicios por categoría">
         {filters.map((f, i) => (
-          <button class:list={['pill', i === 0 ? 'pill-active' : '']}>{f}</button>
+          <button
+            type="button"
+            data-filter={f.id}
+            class:list={['pill', i === 0 ? 'pill-active' : '']}
+            role="tab"
+            aria-selected={i === 0 ? 'true' : 'false'}
+          >
+            {f.label}
+          </button>
         ))}
       </div>
 
-      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div id="services-grid" class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {services.map((s) => (
-          <article class="group flex flex-col rounded-2xl border border-divider bg-surface-2 p-7 transition hover:border-accent-500/40 hover:bg-surface-soft">
+          <article
+            class="group flex flex-col rounded-2xl border border-divider bg-surface-2 p-7 transition hover:border-accent-500/40 hover:bg-surface-soft"
+            data-tags={s.tags.join(' ')}
+          >
             <div class="grid h-14 w-14 place-items-center rounded-xl bg-accent-500/15 text-accent-500 ring-1 ring-accent-500/30 transition group-hover:bg-accent-500 group-hover:text-white">
               <Icon name={s.icon} class="h-7 w-7" />
             </div>
@@ -104,9 +122,43 @@ const packages = [
             <a href="/contacto#cotizar" class="btn-primary mt-6 w-full justify-center">Cotizar</a>
           </article>
         ))}
+        <p
+          id="services-empty"
+          class="hidden col-span-full rounded-2xl border border-dashed border-divider-strong/60 p-12 text-center text-muted"
+        >
+          No hay servicios para esta categoría. Mostrando todos los servicios.
+        </p>
       </div>
     </div>
   </section>
+
+  <script>
+    const pills = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
+    const grid = document.getElementById('services-grid');
+    const empty = document.getElementById('services-empty');
+    const cards = grid ? Array.from(grid.querySelectorAll<HTMLElement>('article[data-tags]')) : [];
+
+    function applyFilter(id: string) {
+      let visible = 0;
+      cards.forEach((card) => {
+        const tags = (card.dataset.tags ?? '').split(/\s+/).filter(Boolean);
+        const match = id === 'todos' || tags.includes(id);
+        card.classList.toggle('hidden', !match);
+        if (match) visible++;
+      });
+      empty?.classList.toggle('hidden', visible > 0);
+
+      pills.forEach((p) => {
+        const active = p.dataset.filter === id;
+        p.classList.toggle('pill-active', active);
+        p.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
+    }
+
+    pills.forEach((p) => {
+      p.addEventListener('click', () => applyFilter(p.dataset.filter ?? 'todos'));
+    });
+  </script>
 
   <!-- Packages -->
   <section class="section bg-page">
