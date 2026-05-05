@@ -1,0 +1,155 @@
+---
+interface Props {
+  name:
+    | 'cog'
+    | 'wrench'
+    | 'gear'
+    | 'headset'
+    | 'phone'
+    | 'mail'
+    | 'pin'
+    | 'clock'
+    | 'arrow-right'
+    | 'check'
+    | 'whatsapp'
+    | 'menu'
+    | 'close'
+    | 'shield'
+    | 'truck'
+    | 'tractor'
+    | 'industry'
+    | 'star'
+    | 'chevron-right';
+  class?: string;
+  size?: number;
+}
+
+const { name, class: className = 'h-5 w-5', size } = Astro.props;
+const sizeAttrs = size ? { width: size, height: size } : {};
+---
+
+{name === 'cog' && (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class={className} {...sizeAttrs}>
+    <circle cx="12" cy="12" r="3" />
+    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z" />
+  </svg>
+)}
+
+{name === 'wrench' && (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class={className} {...sizeAttrs}>
+    <path d="M14.7 6.3a4 4 0 0 0 5.5 5.5L21 11l-2-2-1 1-2-2 1-1-2-2-.7.3ZM6 13l5 5-4 4a2.83 2.83 0 0 1-4-4l3-5Z" />
+  </svg>
+)}
+
+{name === 'gear' && (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class={className} {...sizeAttrs}>
+    <circle cx="12" cy="12" r="3.5" />
+    <path d="M12 2v3M12 19v3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M2 12h3M19 12h3M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12" />
+  </svg>
+)}
+
+{name === 'headset' && (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class={className} {...sizeAttrs}>
+    <path d="M3 14v-2a9 9 0 0 1 18 0v2" />
+    <path d="M21 16a3 3 0 0 1-3 3h-1v-6h1a3 3 0 0 1 3 3ZM3 16a3 3 0 0 0 3 3h1v-6H6a3 3 0 0 0-3 3Z" />
+  </svg>
+)}
+
+{name === 'phone' && (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class={className} {...sizeAttrs}>
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" />
+  </svg>
+)}
+
+{name === 'mail' && (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class={className} {...sizeAttrs}>
+    <rect x="3" y="5" width="18" height="14" rx="2" />
+    <path d="m3 7 9 6 9-6" />
+  </svg>
+)}
+
+{name === 'pin' && (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class={className} {...sizeAttrs}>
+    <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0Z" />
+    <circle cx="12" cy="10" r="3" />
+  </svg>
+)}
+
+{name === 'clock' && (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class={className} {...sizeAttrs}>
+    <circle cx="12" cy="12" r="10" />
+    <path d="M12 6v6l4 2" />
+  </svg>
+)}
+
+{name === 'arrow-right' && (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class={className} {...sizeAttrs}>
+    <path d="M5 12h14M13 5l7 7-7 7" />
+  </svg>
+)}
+
+{name === 'chevron-right' && (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class={className} {...sizeAttrs}>
+    <path d="m9 18 6-6-6-6" />
+  </svg>
+)}
+
+{name === 'check' && (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class={className} {...sizeAttrs}>
+    <path d="M20 6 9 17l-5-5" />
+  </svg>
+)}
+
+{name === 'whatsapp' && (
+  <svg viewBox="0 0 24 24" fill="currentColor" class={className} {...sizeAttrs}>
+    <path d="M19.05 4.91A10 10 0 0 0 4.83 19.06L3 22l3.05-1.79a10 10 0 0 0 13-15.3Zm-7.04 15.3a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-2.55.84.84-2.49-.2-.32a8.21 8.21 0 1 1 6.39 3.3Zm4.51-6.16-1.55-.74c-.21-.1-.36-.16-.51.16s-.59.74-.72.89c-.13.16-.27.18-.49.06a6.7 6.7 0 0 1-1.97-1.21 7.3 7.3 0 0 1-1.36-1.69c-.14-.24 0-.37.11-.49.11-.11.24-.27.36-.41.12-.13.16-.23.24-.39.08-.16.04-.3-.02-.41-.06-.11-.51-1.23-.7-1.69-.18-.43-.36-.37-.5-.38h-.43a.84.84 0 0 0-.6.28 2.55 2.55 0 0 0-.79 1.9 4.42 4.42 0 0 0 .92 2.34 10.13 10.13 0 0 0 3.86 3.41c.54.23.96.37 1.29.47a3.1 3.1 0 0 0 1.42.09 2.33 2.33 0 0 0 1.53-1.08 1.9 1.9 0 0 0 .13-1.08c-.06-.1-.21-.16-.42-.27Z" />
+  </svg>
+)}
+
+{name === 'menu' && (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class={className} {...sizeAttrs}>
+    <path d="M4 6h16M4 12h16M4 18h16" />
+  </svg>
+)}
+
+{name === 'close' && (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class={className} {...sizeAttrs}>
+    <path d="M18 6 6 18M6 6l12 12" />
+  </svg>
+)}
+
+{name === 'shield' && (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class={className} {...sizeAttrs}>
+    <path d="M12 2 4 5v6c0 5 3.5 9.5 8 11 4.5-1.5 8-6 8-11V5l-8-3Z" />
+    <path d="m9 12 2 2 4-4" />
+  </svg>
+)}
+
+{name === 'truck' && (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class={className} {...sizeAttrs}>
+    <path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z" />
+    <circle cx="7" cy="18" r="2" />
+    <circle cx="17" cy="18" r="2" />
+  </svg>
+)}
+
+{name === 'tractor' && (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class={className} {...sizeAttrs}>
+    <path d="M3 17h2M9 6h5l2 5h3v6h-3" />
+    <circle cx="7" cy="17" r="3" />
+    <circle cx="17" cy="17" r="2" />
+  </svg>
+)}
+
+{name === 'industry' && (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class={className} {...sizeAttrs}>
+    <path d="M3 21V10l5 3V10l5 3V8l8 5v8H3Z" />
+    <path d="M7 17h2M13 17h2M17 17h2" />
+  </svg>
+)}
+
+{name === 'star' && (
+  <svg viewBox="0 0 24 24" fill="currentColor" class={className} {...sizeAttrs}>
+    <path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2Z" />
+  </svg>
+)}

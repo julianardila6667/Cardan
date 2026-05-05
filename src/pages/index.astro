@@ -1,0 +1,174 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import StatsRed from '../components/StatsRed.astro';
+import ServicesGrid from '../components/ServicesGrid.astro';
+import WhatToExpect from '../components/WhatToExpect.astro';
+import Difference from '../components/Difference.astro';
+import Testimonials from '../components/Testimonials.astro';
+import BlogTeaser from '../components/BlogTeaser.astro';
+import PartnersStrip from '../components/PartnersStrip.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../data/site';
+import { img } from '../data/images';
+
+const sectors = [
+  { name: 'Vehículos particulares', desc: 'Camionetas, 4x4 y SUV.', icon: 'shield' as const, image: img.carService, alt: img.carServiceAlt },
+  { name: 'Transporte de carga', desc: 'Camiones y tractomulas.', icon: 'truck' as const, image: img.truck, alt: img.truckAlt },
+  { name: 'Maquinaria industrial', desc: 'Construcción y minería.', icon: 'industry' as const, image: img.industry, alt: img.industryAlt },
+  { name: 'Sector agrícola', desc: 'Tractores y cosechadoras.', icon: 'tractor' as const, image: img.agricultural, alt: img.agriculturalAlt },
+];
+
+const services = [
+  {
+    title: 'Venta de cardanes',
+    description: 'Cardanes nuevos y reconstruidos, crucetas, yugos y tornillería para todo tipo de vehículo.',
+    icon: 'cog' as const,
+  },
+  {
+    title: 'Mantenimiento preventivo',
+    description: 'Diagnóstico, balanceo, lubricación y revisión técnica para alargar la vida útil del cardán.',
+    icon: 'wrench' as const,
+  },
+  {
+    title: 'Adaptación a la medida',
+    description: 'Fabricamos y adaptamos cardanes según las especificaciones exactas de tu vehículo o maquinaria.',
+    icon: 'gear' as const,
+  },
+  {
+    title: 'Asesoría técnica',
+    description: 'Más de 40 años de experiencia respaldando cada recomendación. Te guiamos en la mejor solución.',
+    icon: 'headset' as const,
+  },
+];
+---
+
+<BaseLayout
+  title="Inicio"
+  description="Especialistas en venta, mantenimiento y adaptación de cardanes en Bogotá. Más de 40 años de experiencia para vehículos, maquinaria industrial y equipos agrícolas."
+>
+  <Hero />
+
+  <!-- Services Section -->
+  <section class="section">
+    <div class="container-x">
+      <div class="mb-14 max-w-3xl text-center mx-auto">
+        <p class="eyebrow justify-center">Soluciones integrales</p>
+        <h2 class="mt-4 h-display text-balance text-4xl md:text-5xl">
+          Soluciones <span class="text-accent-500">automotrices</span> para cada necesidad
+        </h2>
+        <p class="mt-5 text-pretty text-muted">
+          Desde la venta del repuesto exacto hasta la fabricación de cardanes a la medida, nuestro taller cubre todo el ciclo de servicio con calidad garantizada.
+        </p>
+      </div>
+
+      <ServicesGrid services={services} />
+    </div>
+  </section>
+
+  <!-- Red stats strip -->
+  <StatsRed />
+
+  <!-- Difference section -->
+  <Difference />
+
+  <!-- Coverage / sectors -->
+  <section class="section">
+    <div class="container-x">
+      <div class="mb-12 grid gap-6 md:grid-cols-[1.4fr_1fr] md:items-end">
+        <div>
+          <p class="eyebrow">Cobertura</p>
+          <h2 class="mt-4 h-display text-4xl md:text-5xl">
+            Atendemos <span class="text-accent-500">todos los sectores</span> del transporte y la industria
+          </h2>
+        </div>
+        <p class="text-muted md:text-lg">
+          Vehículos particulares, transporte de carga, equipos industriales y maquinaria agrícola. Sin importar el tipo, tenemos la solución.
+        </p>
+      </div>
+
+      <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+        {sectors.map((s) => (
+          <article class="group relative overflow-hidden rounded-2xl border border-divider transition hover:border-accent-500/40 hover:shadow-2xl">
+            <div class="relative aspect-[4/5] overflow-hidden">
+              <img src={s.image} alt={s.alt} class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" width="600" height="750" />
+              <div class="absolute inset-0 bg-gradient-to-t from-ink-950/95 via-ink-950/40 to-transparent"></div>
+              <div class="absolute left-5 top-5 grid h-11 w-11 place-items-center rounded-xl bg-accent-500 text-white shadow-lg ring-1 ring-white/20">
+                <Icon name={s.icon} class="h-5 w-5" />
+              </div>
+            </div>
+            <div class="absolute inset-x-0 bottom-0 p-5">
+              <h3 class="font-display text-lg font-semibold text-white">{s.name}</h3>
+              <p class="mt-1 text-sm text-white/80">{s.desc}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- What to expect -->
+  <WhatToExpect />
+
+  <!-- Partners -->
+  <PartnersStrip />
+
+  <!-- Testimonials -->
+  <Testimonials />
+
+  <!-- Blog teaser -->
+  <BlogTeaser />
+
+  <!-- Map / contact prelude -->
+  <section class="section bg-page">
+    <div class="container-x grid items-center gap-12 lg:grid-cols-2">
+      <div>
+        <p class="eyebrow">Nuestra ubicación</p>
+        <h2 class="mt-4 h-display text-4xl md:text-5xl">
+          Pasa por nuestro <span class="text-accent-500">taller</span> en Bogotá
+        </h2>
+        <p class="mt-5 max-w-md text-muted">
+          Estamos ubicados en la Av. Carrera 30 No. 30 A-87. Atendemos sin cita previa para diagnósticos rápidos y consultas técnicas.
+        </p>
+
+        <div class="mt-8 space-y-4">
+          <div class="flex items-start gap-3 rounded-xl border border-divider bg-surface-2 p-4">
+            <Icon name="pin" class="mt-0.5 h-5 w-5 shrink-0 text-accent-500" />
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wider text-faint">Dirección</p>
+              <p class="mt-0.5 text-body">{site.address}</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3 rounded-xl border border-divider bg-surface-2 p-4">
+            <Icon name="clock" class="mt-0.5 h-5 w-5 shrink-0 text-accent-500" />
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wider text-faint">Horario</p>
+              <p class="mt-0.5 text-body">Lun – Vie 8:00 a.m. – 5:00 p.m.</p>
+              <p class="text-body">Sábado 8:00 a.m. – 1:00 p.m.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3 rounded-xl border border-divider bg-surface-2 p-4">
+            <Icon name="phone" class="mt-0.5 h-5 w-5 shrink-0 text-accent-500" />
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wider text-faint">Teléfonos</p>
+              {site.phones.map((p) => (
+                <p class="mt-0.5 text-body">{p}</p>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="overflow-hidden rounded-3xl border border-divider">
+        <iframe
+          title="Ubicación Cardan y Repuestos"
+          src="https://www.google.com/maps?q=Av+Carrera+30+%23+30A-87,+Bogot%C3%A1,+Colombia&output=embed"
+          class="aspect-[4/5] w-full"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

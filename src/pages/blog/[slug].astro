@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+import { posts } from '../../data/posts';
+import { postImageBySlug } from '../../data/images';
+
+export function getStaticPaths() {
+  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const related = posts.filter((p) => p.slug !== post.slug).slice(0, 3);
+---
+
+<BaseLayout title={post.title} description={post.excerpt}>
+  <article class="relative">
+    <div class="absolute inset-x-0 top-0 -z-10 h-[420px] bg-hero-gradient"></div>
+
+    <div class="container-x pt-20 pb-16">
+      <a href="/blog" class="inline-flex items-center gap-2 text-sm text-soft transition hover:text-body">
+        <Icon name="arrow-right" class="h-4 w-4 -scale-x-100" />
+        Volver al blog
+      </a>
+      <div class="mt-6 flex flex-wrap items-center gap-3">
+        <span class="rounded-full bg-accent-500 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-white">{post.category}</span>
+        <span class="text-sm text-soft">{post.date}</span>
+        <span class="text-sm text-soft">· {post.readTime} de lectura</span>
+      </div>
+      <h1 class="mt-5 h-display text-balance text-4xl leading-tight md:text-5xl lg:text-6xl">
+        {post.title}
+      </h1>
+
+      <!-- Hero image -->
+      <div class="mt-10 aspect-[16/8] overflow-hidden rounded-3xl border border-divider">
+        <img src={postImageBySlug[post.slug]?.src} alt={postImageBySlug[post.slug]?.alt ?? post.title} class="h-full w-full object-cover" loading="eager" width="1200" height="600" />
+      </div>
+    </div>
+
+    <div class="container-x grid gap-10 pb-20 lg:grid-cols-[1fr_280px]">
+      <div class="prose prose-invert max-w-none prose-p:text-soft prose-headings:text-body prose-headings:font-display prose-a:text-accent-500">
+        {post.body.map((paragraph) => (
+          <p>{paragraph}</p>
+        ))}
+
+        <h3>¿Necesitas atención especializada?</h3>
+        <p>
+          Nuestros técnicos están listos para diagnosticar y resolver cualquier problema con tu cardán o sistema de transmisión.
+          Agenda una cita o solicita una cotización sin compromiso.
+        </p>
+
+        <!-- Tags -->
+        <div class="not-prose mt-12 border-t border-divider pt-8">
+          <div class="flex flex-wrap gap-2">
+            {post.tags.map((t) => (
+              <span class="rounded-full border border-divider bg-surface-2 px-3 py-1 text-xs text-soft">{t}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Related -->
+      <aside class="lg:sticky lg:top-32 lg:self-start">
+        <div class="rounded-2xl border border-divider bg-surface-2 p-6">
+          <h4 class="text-xs font-semibold uppercase tracking-wider text-faint">Artículos relacionados</h4>
+          <ul class="mt-4 space-y-5">
+            {related.map((r) => (
+              <li>
+                <a href={`/blog/${r.slug}`} class="group block transition">
+                  <p class="text-xs text-faint">{r.date}</p>
+                  <p class="mt-1 text-sm font-medium text-body transition group-hover:text-accent-400 line-clamp-3">{r.title}</p>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </article>
+
+</BaseLayout>

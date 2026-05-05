@@ -1,0 +1,55 @@
+---
+import Icon from './Icon.astro';
+
+const steps = [
+  {
+    title: 'Agenda tu cita',
+    body: 'Solicita tu cotización por WhatsApp, llamada o nuestro formulario y nuestro equipo te contacta el mismo día.',
+    icon: 'phone',
+  },
+  {
+    title: 'Diagnóstico y cotización',
+    body: 'Inspeccionamos tu cardán sin costo y te enviamos un presupuesto claro, con tiempos y garantía incluidos.',
+    icon: 'wrench',
+  },
+  {
+    title: 'Servicio garantizado',
+    body: 'Realizamos el trabajo con repuestos originales o reconstruidos de calidad. Entregamos cuando prometemos.',
+    icon: 'shield',
+  },
+];
+---
+
+<section class="section">
+  <div class="container-x grid gap-14 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
+    <div>
+      <p class="eyebrow">Cómo trabajamos</p>
+      <h2 class="mt-4 h-display text-4xl md:text-5xl">
+        Qué esperar al trabajar con <span class="text-accent-500">nosotros</span>
+      </h2>
+      <p class="mt-5 max-w-md text-muted">
+        Un proceso simple, transparente y respaldado por décadas de experiencia. Desde la primera llamada hasta la entrega de tu vehículo.
+      </p>
+    </div>
+
+    <div class="relative">
+      <div class="absolute left-7 top-7 hidden h-[calc(100%-3.5rem)] w-px bg-gradient-to-b from-accent-500 via-accent-500/40 to-transparent md:block"></div>
+      <ol class="space-y-6">
+        {steps.map((step, i) => (
+          <li class="relative grid grid-cols-[auto_1fr] gap-5 rounded-2xl border border-divider bg-surface-2 p-6 transition hover:border-accent-500/40 md:p-8">
+            <div class="grid h-14 w-14 place-items-center rounded-xl bg-accent-500 text-white shadow-[0_8px_24px_-8px_rgba(237,58,58,.6)]">
+              <Icon name={step.icon as any} class="h-6 w-6" />
+            </div>
+            <div>
+              <div class="flex items-center gap-3">
+                <span class="text-xs font-semibold uppercase tracking-[0.18em] text-accent-400">Paso 0{i + 1}</span>
+              </div>
+              <h3 class="mt-1 font-display text-xl font-semibold text-body md:text-2xl">{step.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-muted md:text-base">{step.body}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>

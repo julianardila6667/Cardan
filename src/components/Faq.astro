@@ -1,0 +1,74 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+
+interface Props {
+  items: { q: string; a: string }[];
+  title?: string;
+  subtitle?: string;
+}
+
+const { items, subtitle } = Astro.props;
+---
+
+<section class="section">
+  <div class="container-x grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
+    <div class="lg:sticky lg:top-32 lg:self-start">
+      <p class="eyebrow">¿Tienes dudas?</p>
+      <h2 class="mt-4 h-display text-4xl md:text-5xl">
+        Preguntas <span class="text-accent-500">frecuentes</span>
+      </h2>
+      <p class="mt-5 text-pretty text-muted">
+        {subtitle ?? 'Resolvemos las dudas más comunes sobre nuestros servicios, garantías, tiempos y procesos. Si tu pregunta no está aquí, escríbenos directamente.'}
+      </p>
+
+      <!-- Decorative stats -->
+      <div class="mt-10 grid grid-cols-2 gap-4">
+        <div class="rounded-2xl border border-divider bg-surface-2 p-5">
+          <p class="font-display text-3xl font-bold text-body">+40</p>
+          <p class="mt-1 text-xs font-medium uppercase tracking-wider text-faint">Años respondiendo</p>
+        </div>
+        <div class="rounded-2xl border border-divider bg-surface-2 p-5">
+          <p class="font-display text-3xl font-bold text-accent-500">24h</p>
+          <p class="mt-1 text-xs font-medium uppercase tracking-wider text-faint">Respuesta máxima</p>
+        </div>
+      </div>
+
+      <!-- Still have questions card -->
+      <div class="mt-6 overflow-hidden rounded-2xl bg-accent-500 p-6 text-white">
+        <div class="flex items-start gap-3">
+          <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-white/20">
+            <Icon name="headset" class="h-5 w-5" />
+          </span>
+          <div>
+            <h3 class="font-display text-lg font-semibold">¿Tu duda no está aquí?</h3>
+            <p class="mt-1 text-sm text-white/90">Escríbenos por WhatsApp y nuestro equipo te responde en minutos.</p>
+          </div>
+        </div>
+        <a
+          href={site.social.whatsapp}
+          target="_blank"
+          rel="noopener"
+          class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-accent-500 transition hover:bg-white/90"
+        >
+          <Icon name="whatsapp" class="h-4 w-4" />
+          Contactar ahora
+        </a>
+      </div>
+    </div>
+
+    <div class="divide-y divide-divider border-y border-divider">
+      {items.map((item, i) => (
+        <details class="group py-5" open={i === 0}>
+          <summary class="flex cursor-pointer list-none items-start justify-between gap-6 text-left">
+            <span class="text-base font-medium text-body md:text-lg">{item.q}</span>
+            <span class="mt-1 grid h-7 w-7 shrink-0 place-items-center rounded-full border border-divider-strong/60 text-muted transition group-open:rotate-45 group-open:border-accent-500 group-open:bg-accent-500 group-open:text-white">
+              <svg viewBox="0 0 24 24" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14" /></svg>
+            </span>
+          </summary>
+          <p class="mt-3 max-w-3xl pr-12 text-sm leading-relaxed text-muted md:text-base">{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

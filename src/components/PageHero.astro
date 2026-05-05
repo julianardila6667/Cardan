@@ -1,0 +1,28 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  highlight?: string;
+  highlightPosition?: 'before' | 'after' | 'wrap';
+  description?: string;
+}
+
+const { eyebrow, title, highlight, highlightPosition = 'after', description } = Astro.props;
+---
+
+<section class="relative overflow-hidden">
+  <div class="absolute inset-0 -z-10 bg-hero-gradient"></div>
+  <div class="absolute inset-0 -z-10 bg-noise opacity-40 mix-blend-overlay"></div>
+
+  <div class="container-x relative pt-20 pb-24 md:pt-28 md:pb-32 text-center">
+    {eyebrow && <p class="eyebrow justify-center">{eyebrow}</p>}
+    <h1 class="mt-5 h-display text-balance text-5xl leading-[1.05] md:text-6xl lg:text-7xl">
+      {highlight && highlightPosition === 'before' && <span class="text-accent-500">{highlight} </span>}
+      {title}
+      {highlight && highlightPosition === 'after' && <> <span class="text-accent-500">{highlight}</span></>}
+    </h1>
+    {description && (
+      <p class="mx-auto mt-6 max-w-2xl text-pretty text-base leading-relaxed text-soft md:text-lg">{description}</p>
+    )}
+  </div>
+</section>

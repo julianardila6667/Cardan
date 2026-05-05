@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cardanyrepuestos.com/sitemap-index.xml

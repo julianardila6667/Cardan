@@ -1,0 +1,24 @@
+---
+const partners = [
+  { name: 'Renault', svg: 'M12 2 2 12l4 4V8h12v8l4-4L12 2Z' },
+  { name: 'Chevrolet', svg: 'M2 8h20l-2 4 2 4H2l2-4-2-4Z' },
+  { name: 'Nissan', svg: 'M3 12h18M6 8h12M6 16h12' },
+  { name: 'Toyota', svg: 'M12 4a8 8 0 1 0 0 16 8 8 0 0 0 0-16Zm0 4a4 4 0 1 1 0 8 4 4 0 0 1 0-8Z' },
+  { name: 'Ford', svg: 'M4 8h16v8H4zM7 11h10M7 13h6' },
+];
+---
+
+<section class="border-y border-divider bg-page py-12">
+  <div class="container-x">
+    <p class="text-center text-xs font-semibold uppercase tracking-[0.22em] text-faint">
+      Trabajamos con todas las marcas y maquinaria del mercado
+    </p>
+    <div class="mt-8 grid grid-cols-2 items-center justify-items-center gap-y-8 sm:grid-cols-3 md:grid-cols-5">
+      {partners.map((p) => (
+        <svg viewBox="0 0 24 24" class="h-8 w-auto text-faint opacity-70 transition hover:text-body hover:opacity-100" fill="none" stroke="currentColor" stroke-width="1.5" aria-label={p.name}>
+          <path d={p.svg} />
+        </svg>
+      ))}
+    </div>
+  </div>
+</section>

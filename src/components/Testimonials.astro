@@ -1,0 +1,67 @@
+---
+import Icon from './Icon.astro';
+
+const testimonials = [
+  {
+    name: 'Carlos Ramírez',
+    role: 'Conductor — Transporte de carga',
+    body: 'Llevo más de 10 años trayendo mis camiones a Cardan y Repuestos. Trabajo impecable, garantía real y precios justos. Son los mejores en Bogotá.',
+    accent: false,
+  },
+  {
+    name: 'María Fernanda López',
+    role: 'Gerente — Flota agrícola',
+    body: 'Adaptaron un cardán para una cosechadora que ningún otro taller pudo solucionar. Servicio rápido y muy profesional, los recomiendo sin dudar.',
+    accent: true,
+  },
+  {
+    name: 'Andrés Quintero',
+    role: 'Particular — Camioneta 4x4',
+    body: 'Diagnóstico claro, asesoría honesta y entrega cuando dijeron. La diferencia con otros talleres se nota desde la primera visita.',
+    accent: false,
+  },
+];
+---
+
+<section class="section bg-page">
+  <div class="container-x">
+    <div class="mb-12 max-w-2xl">
+      <p class="eyebrow">Testimonios</p>
+      <h2 class="mt-4 h-display text-4xl md:text-5xl">
+        Lo que dicen <span class="text-accent-500">nuestros clientes</span>
+      </h2>
+      <p class="mt-4 text-muted">Décadas de trabajo bien hecho hablan por nosotros. Estas son las voces de quienes confían en nuestro servicio.</p>
+    </div>
+
+    <div class="grid gap-6 md:grid-cols-3">
+      {testimonials.map((t) => (
+        <article
+          class:list={[
+            'relative flex flex-col rounded-2xl border p-7 transition',
+            t.accent
+              ? 'bg-accent-500 border-accent-500 text-white'
+              : 'bg-surface-2 border-divider hover:border-divider-strong',
+          ]}
+        >
+          <div class="flex items-center gap-1 text-yellow-300">
+            {[1, 2, 3, 4, 5].map(() => (
+              <Icon name="star" class={t.accent ? 'h-4 w-4 text-white' : 'h-4 w-4 text-accent-500'} />
+            ))}
+          </div>
+          <p class={`mt-5 text-sm leading-relaxed md:text-base ${t.accent ? 'text-white/95' : 'text-soft'}`}>
+            "{t.body}"
+          </p>
+          <div class="mt-7 flex items-center gap-3 pt-5 border-t border-divider-strong/60">
+            <div class={`grid h-11 w-11 place-items-center rounded-full font-semibold ${t.accent ? 'bg-white/20 text-white' : 'bg-surface-soft text-body'}`}>
+              {t.name.split(' ').map(n => n[0]).slice(0, 2).join('')}
+            </div>
+            <div>
+              <p class={`text-sm font-semibold ${t.accent ? 'text-white' : 'text-body'}`}>{t.name}</p>
+              <p class={`text-xs ${t.accent ? 'text-white/80' : 'text-faint'}`}>{t.role}</p>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,32 @@
+---
+interface Props {
+  class?: string;
+  variant?: 'default' | 'compact';
+}
+
+const { class: className = '', variant = 'default' } = Astro.props;
+---
+
+<a href="/" class={`group flex items-center gap-3 ${className}`} aria-label="Cardan y Repuestos · Inicio">
+  <span class="relative grid h-12 w-12 place-items-center overflow-hidden rounded-xl bg-white p-1.5 shadow-[0_4px_18px_-6px_rgba(237,58,58,.4)] ring-1 ring-black/5 transition-transform group-hover:scale-105">
+    <img
+      src="/img/logo.jpg"
+      alt="Cardan y Repuestos"
+      class="h-full w-full object-contain"
+      loading="eager"
+      decoding="async"
+      width="48"
+      height="48"
+    />
+  </span>
+  {variant === 'default' && (
+    <span class="flex flex-col leading-none">
+      <span class="font-display text-base font-bold tracking-tight text-body">
+        Cardan <span class="text-accent-500">y</span> Repuestos
+      </span>
+      <span class="mt-0.5 text-[10px] font-semibold uppercase tracking-[0.22em] text-faint">
+        Servicio &amp; Repuestos
+      </span>
+    </span>
+  )}
+</a>

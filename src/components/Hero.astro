@@ -1,0 +1,74 @@
+---
+import Icon from './Icon.astro';
+import { img } from '../data/images';
+---
+
+<section class="relative overflow-hidden">
+  <!-- Gradient background like FixinMoto: light grey → dark on the right -->
+  <div class="absolute inset-0 -z-10">
+    <div class="absolute inset-0 bg-hero-gradient"></div>
+    <div class="absolute inset-0 bg-noise opacity-40 mix-blend-overlay"></div>
+  </div>
+
+  <div class="container-x relative grid items-center gap-10 pt-12 pb-20 md:pb-28 lg:grid-cols-[1.2fr_1fr] lg:gap-16 lg:pt-20 lg:pb-36">
+    <div class="max-w-3xl">
+      <h1 class="h-display text-balance text-5xl leading-[1.05] sm:text-6xl lg:text-[5.5rem] lg:leading-[1.02]">
+        Cardanes que <span class="text-accent-500">mueven</span><br />
+        <span class="text-accent-500">tu industria</span> con confianza.
+      </h1>
+
+      <p class="mt-7 max-w-2xl text-base leading-relaxed text-soft md:text-lg">
+        Especialistas en venta, mantenimiento y adaptación de cardanes para vehículos, maquinaria industrial y equipos agrícolas. Más de 40 años entregando soluciones precisas, rápidas y respaldadas por garantía.
+      </p>
+
+      <div class="mt-9 flex flex-wrap gap-3">
+        <a href="/contacto#cotizar" class="btn-primary">
+          Cotizar ahora
+          <Icon name="arrow-right" class="h-4 w-4" />
+        </a>
+        <a href="/productos-servicios" class="btn-ghost">
+          Nuestros servicios
+        </a>
+      </div>
+    </div>
+
+    <!-- Right card with real photo -->
+    <div class="relative hidden lg:block">
+      <div class="relative aspect-[4/5] w-full max-w-md ml-auto overflow-hidden rounded-3xl border border-divider shadow-[0_40px_80px_-30px_rgba(0,0,0,.6)]">
+        <img
+          src={img.hero}
+          alt={img.heroAlt}
+          class="h-full w-full object-cover"
+          loading="eager"
+          fetchpriority="high"
+          width="800"
+          height="1000"
+        />
+        <!-- Gradient overlay for legibility -->
+        <div class="absolute inset-0 bg-gradient-to-t from-ink-950/85 via-ink-950/30 to-transparent"></div>
+
+        <!-- Floating chip -->
+        <div class="absolute right-5 top-5 inline-flex items-center gap-2 rounded-full border border-accent-500/40 bg-accent-500 px-3 py-1.5 text-xs font-semibold text-white shadow-lg">
+          <span class="h-2 w-2 rounded-full bg-white animate-pulse"></span> Diagnóstico activo
+        </div>
+        <div class="absolute bottom-5 left-5 rounded-2xl border border-white/15 bg-black/60 p-4 backdrop-blur">
+          <p class="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/70">Garantía total</p>
+          <p class="mt-1 font-display text-3xl font-bold text-white">100%</p>
+          <p class="text-xs text-white/80">en cada servicio</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="lg:hidden">
+      <p class="text-sm text-muted">
+        Tu vehículo merece el mejor cuidado, y nosotros lo entregamos con precisión, rapidez y confiabilidad.
+      </p>
+    </div>
+  </div>
+
+  <div class="container-x relative -mt-8 hidden pb-20 lg:flex lg:justify-end">
+    <p class="max-w-sm text-right text-sm text-muted">
+      Tu vehículo merece el mejor cuidado, y nosotros lo entregamos con precisión, rapidez y confiabilidad. Solicita tu cita hoy.
+    </p>
+  </div>
+</section>

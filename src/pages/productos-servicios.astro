@@ -1,0 +1,161 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import StatsRed from '../components/StatsRed.astro';
+import Faq from '../components/Faq.astro';
+import Icon from '../components/Icon.astro';
+
+const services = [
+  { title: 'Venta de cardanes', desc: 'Cardanes nuevos y reconstruidos para todo tipo de vehículo y maquinaria.', icon: 'cog' as const },
+  { title: 'Mantenimiento preventivo', desc: 'Diagnóstico, lubricación, balanceo y revisión técnica.', icon: 'wrench' as const },
+  { title: 'Adaptación a la medida', desc: 'Fabricamos cardanes según las especificaciones exactas de tu equipo.', icon: 'gear' as const },
+  { title: 'Cambio de crucetas', desc: 'Reemplazo de crucetas con repuestos certificados y garantía.', icon: 'shield' as const },
+  { title: 'Balanceo dinámico', desc: 'Balanceo computarizado para eliminar vibraciones a alta velocidad.', icon: 'gear' as const },
+  { title: 'Reparación de yugos', desc: 'Restauración o reemplazo de yugos desgastados o dañados.', icon: 'wrench' as const },
+  { title: 'Tornillería y bridas', desc: 'Repuestos originales y de alta resistencia para cardanes industriales.', icon: 'cog' as const },
+  { title: 'Servicio de emergencia', desc: 'Atención prioritaria para flotas y vehículos de carga pesada.', icon: 'headset' as const },
+  { title: 'Diagnóstico técnico', desc: 'Inspección profesional sin costo para identificar fallas.', icon: 'shield' as const },
+  { title: 'Cardanes industriales', desc: 'Soluciones para maquinaria de construcción, minería y manufactura.', icon: 'industry' as const },
+  { title: 'Cardanes agrícolas', desc: 'Especializados en tractores, cosechadoras y equipos del campo.', icon: 'tractor' as const },
+  { title: 'Asesoría técnica', desc: 'Más de 40 años orientando a clientes con la mejor solución.', icon: 'headset' as const },
+];
+
+const filters = ['Todos', 'Vehículos', 'Carga pesada', 'Industrial', 'Agrícola', 'Mantenimiento'];
+
+const faqItems = [
+  {
+    q: '¿Cuánto tiempo tarda el servicio de un cardán?',
+    a: 'Los servicios estándar de mantenimiento toman entre 2 y 5 horas. Las fabricaciones a la medida o reparaciones complejas pueden tardar de 3 a 7 días, según el caso. Te confirmamos el plazo exacto al diagnóstico.',
+  },
+  {
+    q: '¿Trabajan con repuestos originales?',
+    a: 'Sí. Trabajamos con repuestos originales y reconstruidos certificados. Te explicamos las opciones disponibles para que elijas la que mejor se ajuste a tu necesidad y presupuesto.',
+  },
+  {
+    q: '¿Pueden recoger mi vehículo en mi ubicación?',
+    a: 'Para flotas y casos especiales coordinamos recogida en Bogotá. Para vehículos particulares te orientamos sobre el procedimiento más rápido. Llámanos y lo agendamos.',
+  },
+  {
+    q: '¿Qué garantía ofrecen?',
+    a: 'Todos nuestros servicios incluyen garantía respaldada por escrito. La cobertura específica depende del tipo de trabajo y los repuestos utilizados. Te entregamos los detalles antes de iniciar.',
+  },
+  {
+    q: '¿Atienden maquinaria de marcas importadas?',
+    a: 'Sí. Hemos trabajado con maquinaria de prácticamente todas las marcas. Si el cardán no se consigue en el mercado, lo fabricamos a la medida.',
+  },
+  {
+    q: '¿Qué métodos de pago aceptan?',
+    a: 'Aceptamos efectivo, transferencia bancaria, tarjetas débito y crédito. Para empresas manejamos crédito comercial bajo aprobación.',
+  },
+];
+
+const packages = [
+  {
+    name: 'Mantenimiento básico',
+    price: '$120.000',
+    features: ['Engrase de crucetas', 'Inspección visual completa', 'Reporte técnico', 'Garantía de 30 días'],
+    accent: false,
+  },
+  {
+    name: 'Servicio integral',
+    price: '$320.000',
+    features: ['Mantenimiento básico incluido', 'Balanceo dinámico computarizado', 'Cambio de crucetas si aplica', 'Garantía de 6 meses'],
+    accent: true,
+  },
+  {
+    name: 'Fabricación a la medida',
+    price: 'Cotización',
+    features: ['Diseño según especificaciones', 'Materiales premium certificados', 'Pruebas de torque y velocidad', 'Garantía extendida'],
+    accent: false,
+  },
+];
+---
+
+<BaseLayout
+  title="Productos y servicios"
+  description="Catálogo completo de servicios: venta, mantenimiento, adaptación y fabricación de cardanes en Bogotá."
+>
+  <PageHero
+    eyebrow="Nuestros servicios"
+    title="Cuidado automotriz"
+    highlight="experto para cada necesidad"
+    description="Ofrecemos una gama completa de servicios para mantener tus cardanes y transmisiones en óptimas condiciones."
+  />
+
+  <StatsRed />
+
+  <!-- Filters + grid -->
+  <section class="section">
+    <div class="container-x">
+      <div class="mb-10 flex flex-wrap items-center justify-center gap-3">
+        {filters.map((f, i) => (
+          <button class:list={['pill', i === 0 ? 'pill-active' : '']}>{f}</button>
+        ))}
+      </div>
+
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {services.map((s) => (
+          <article class="group flex flex-col rounded-2xl border border-divider bg-surface-2 p-7 transition hover:border-accent-500/40 hover:bg-surface-soft">
+            <div class="grid h-14 w-14 place-items-center rounded-xl bg-accent-500/15 text-accent-500 ring-1 ring-accent-500/30 transition group-hover:bg-accent-500 group-hover:text-white">
+              <Icon name={s.icon} class="h-7 w-7" />
+            </div>
+            <h3 class="mt-5 font-display text-lg font-semibold text-body">{s.title}</h3>
+            <p class="mt-3 flex-1 text-sm leading-relaxed text-muted">{s.desc}</p>
+            <a href="/contacto#cotizar" class="btn-primary mt-6 w-full justify-center">Cotizar</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Packages -->
+  <section class="section bg-page">
+    <div class="container-x">
+      <div class="mb-12 max-w-3xl">
+        <p class="eyebrow">Paquetes de servicio</p>
+        <h2 class="mt-4 h-display text-4xl md:text-5xl">
+          Servicios <span class="text-accent-500">a tu medida</span> con precios claros
+        </h2>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-3">
+        {packages.map((p) => (
+          <article
+            class:list={[
+              'flex flex-col rounded-2xl border p-8 transition',
+              p.accent
+                ? 'bg-accent-500 border-accent-500 text-white'
+                : 'bg-surface-2 border-divider hover:border-divider-strong',
+            ]}
+          >
+            {p.accent && <span class="mb-2 inline-block rounded-full bg-white/20 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-white">Más solicitado</span>}
+            <h3 class={`font-display text-2xl font-semibold ${p.accent ? 'text-white' : 'text-body'}`}>{p.name}</h3>
+            <p class={`mt-3 font-display text-4xl font-bold ${p.accent ? 'text-white' : 'text-accent-500'}`}>{p.price}</p>
+            <ul class={`mt-6 flex-1 space-y-3 text-sm ${p.accent ? 'text-white/90' : 'text-muted'}`}>
+              {p.features.map((f) => (
+                <li class="flex items-start gap-2">
+                  <Icon name="check" class={`mt-0.5 h-4 w-4 ${p.accent ? 'text-white' : 'text-accent-500'}`} />
+                  {f}
+                </li>
+              ))}
+            </ul>
+            <a
+              href="/contacto#cotizar"
+              class:list={[
+                'btn mt-7 w-full justify-center',
+                p.accent
+                  ? 'bg-white text-accent-500 hover:bg-white/90'
+                  : 'bg-accent-500 text-white hover:bg-accent-600',
+              ]}
+            >
+              Solicitar
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Faq items={faqItems} />
+
+</BaseLayout>

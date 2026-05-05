@@ -1,0 +1,105 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import StatsRed from '../components/StatsRed.astro';
+import Icon from '../components/Icon.astro';
+import { img } from '../data/images';
+
+const reasons = [
+  {
+    title: 'Técnicos certificados y experimentados',
+    description: 'Nuestro equipo está entrenado para diagnosticar y reparar cualquier sistema de transmisión con la última tecnología.',
+    icon: 'shield' as const,
+  },
+  {
+    title: 'Precios transparentes, sin sorpresas',
+    description: 'Cotizaciones claras antes de iniciar el trabajo. Lo que ves en el presupuesto es lo que pagas.',
+    icon: 'check' as const,
+  },
+  {
+    title: 'Equipo y tecnología de avanzada',
+    description: 'Maquinaria especializada para balanceo, fabricación y diagnóstico, con altos estándares de precisión.',
+    icon: 'gear' as const,
+  },
+  {
+    title: 'Servicio rápido y confiable',
+    description: 'Sabemos que tu vehículo es esencial. Nos enfocamos en entregar a tiempo sin sacrificar la calidad.',
+    icon: 'wrench' as const,
+  },
+];
+---
+
+<BaseLayout
+  title="Nosotros"
+  description="Más de 40 años especializándonos en cardanes. Conoce la historia, equipo y valores que han convertido a Cardan y Repuestos en el referente del sector en Bogotá."
+>
+  <PageHero
+    eyebrow="Nuestra historia"
+    title="Impulsados por"
+    highlight="pasión y experiencia"
+    description="Más de 40 años fabricando, vendiendo y manteniendo cardanes que mueven a Colombia."
+  />
+
+  <!-- Story / journey -->
+  <section class="section">
+    <div class="container-x grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+      <div>
+        <p class="eyebrow">Nuestro recorrido</p>
+        <h2 class="mt-4 h-display text-4xl md:text-5xl">
+          De la <span class="text-accent-500">pasión</span> a la <span class="text-accent-500">precisión</span>
+        </h2>
+        <div class="mt-6 space-y-4 text-muted">
+          <p>
+            Cardan y Repuestos nació en Bogotá con un objetivo claro: ofrecer un servicio especializado en cardanes que combinara conocimiento técnico, calidad de repuestos y atención humana.
+          </p>
+          <p>
+            Cuatro décadas después, somos una empresa consolidada que atiende vehículos particulares, transporte de carga, maquinaria industrial y equipos agrícolas. Cada cardán que sale de nuestro taller lleva el respaldo de generaciones de experiencia y un compromiso real con la durabilidad.
+          </p>
+          <p>
+            Hoy seguimos creciendo, modernizando equipos y sumando talento técnico, pero conservamos lo que nos hizo conocidos: la honestidad y la dedicación a cada cliente.
+          </p>
+        </div>
+      </div>
+
+      <div class="relative">
+        <div class="relative aspect-[4/5] w-full overflow-hidden rounded-3xl border border-divider">
+          <img src={img.workshop} alt={img.workshopAlt} class="h-full w-full object-cover" loading="lazy" width="800" height="1000" />
+          <div class="absolute inset-0 bg-gradient-to-t from-ink-950/90 via-ink-950/40 to-transparent"></div>
+          <div class="absolute left-6 bottom-6 right-6">
+            <p class="font-display text-7xl font-bold text-white md:text-8xl">+40</p>
+            <p class="mt-2 text-xs font-semibold uppercase tracking-[0.22em] text-accent-400">Años de trayectoria</p>
+          </div>
+        </div>
+        <div class="absolute -bottom-6 -left-6 hidden rounded-2xl bg-accent-500 p-5 shadow-xl md:block">
+          <p class="font-display text-3xl font-bold text-white">+15K</p>
+          <p class="text-xs text-white/85">Cardanes fabricados</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why choose us -->
+  <section class="section bg-page">
+    <div class="container-x">
+      <div class="mb-14 max-w-3xl">
+        <p class="eyebrow">¿Por qué elegirnos?</p>
+        <h2 class="mt-4 h-display text-4xl md:text-5xl">
+          Tu aliado de confianza en <span class="text-accent-500">cardanes</span> y transmisiones
+        </h2>
+      </div>
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {reasons.map((r) => (
+          <div class="group rounded-2xl border border-divider bg-surface-2 p-7 transition hover:border-accent-500/40">
+            <div class="grid h-12 w-12 place-items-center rounded-xl bg-accent-500 text-white">
+              <Icon name={r.icon} class="h-6 w-6" />
+            </div>
+            <h3 class="mt-5 font-display text-lg font-semibold text-body">{r.title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-muted">{r.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <StatsRed />
+</BaseLayout>
